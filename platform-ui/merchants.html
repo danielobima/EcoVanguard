@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recyclers</title>
+    <title>Merchants</title>
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <!-- fonts style -->
@@ -20,13 +20,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
     />
-    <link rel="stylesheet" href="./css/recyling.css" />
-    <script src="./js/ui.js"></script>
+    <link rel="stylesheet" href="./css/merchants.css" />
+    <script src="./js/chart.js"></script>
     <script src="./js/metamask-onboarding.bundle.js"></script>
-    <script
-      src="https://unpkg.com/html5-qrcode"
-      type="text/javascript"
-    ></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
   </head>
   <body>
@@ -70,7 +66,10 @@
                   <a class="nav-link" href="how.html"> How </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="connectWallet">
+                  <a
+                    class="nav-link"
+                    href="metamask-integration-tutorial/index.html"
+                  >
                     <span>Wallet</span> <img src="images/wallet.png" alt="" />
                   </a>
                 </li>
@@ -80,10 +79,13 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#"> Sign Up</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                   <a class="nav-link" href="recyclers.html"
                     >Recyclers<span class="sr-only">(current)</span></a
                   >
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="recyclers.html">Merchants</a>
                 </li>
               </ul>
               <div class="user_option">
@@ -109,8 +111,8 @@
       </button>
       <!--A div with the username and image-->
       <div class="user_info">
-        <h4 class="user_name">Mathare Recylcers</h4>
-        <img src="./images/recycling.jpg" alt="user" class="user_img" />
+        <h4 class="user_name">Ruaka Bottlers</h4>
+        <img src="./images/icons8-company-50.png" alt="user" class="user_img" />
       </div>
       <!--The menu items-->
       <div class="menu">
@@ -118,12 +120,12 @@
           <li>
             <img src="./images/icons8-conveyor-64.png" class="icon" />
             <span class="item" onclick="toggle('ordersMarket')"
-              >Orders Market</span
+              >Place Orders</span
             >
           </li>
           <li>
             <img src="./images/icons8-logistics-32.png" class="icon" />
-            <span class="item" onclick="toggle('table')">Open Orders</span>
+            <span class="item" onclick="toggle('table')">My orders</span>
           </li>
           <li>
             <img src="./images/icons8-history-50.png" class="icon" />
@@ -133,11 +135,7 @@
           </li>
           <li>
             <img src="./images/icons8-payment-64.png" class="icon" />
-            <span class="item" onclick="toggle('paymentsModal')">Payments</span>
-          </li>
-          <li>
-            <img src="./images/icons8-qr-50.png" class="icon" />
-            <span class="item">QR Code</span>
+            <span class="item">Payments</span>
           </li>
         </ul>
       </div>
@@ -154,7 +152,7 @@
             alt="Card image cap"
           />
           <div class="card-body">
-            <h5 class="card-title">Materials Recycled</h5>
+            <h5 class="card-title">Materials Ordered</h5>
             <p class="card-text">24 T</p>
           </div>
         </div>
@@ -166,22 +164,27 @@
             alt="Card image cap"
           />
           <div class="card-body">
-            <h5 class="card-title">Orders Fulfilled</h5>
+            <h5 class="card-title">Orders Made</h5>
             <p class="card-text">200</p>
           </div>
         </div>
 
-        <div class="card tokens">
+        <div class="card fulfillment">
           <img
             class="card-img-top"
-            src="./images/logo.png"
+            src="./images/icons8-truck-100.png"
             alt="Card image cap"
           />
           <div class="card-body">
-            <h5 class="card-title">Tokens Earned</h5>
-            <p class="card-text">5.32145</p>
+            <h5 class="card-title">Fulfillment Rate</h5>
+            <p class="card-text">50 %</p>
           </div>
         </div>
+      </div>
+
+      <div class="graph" style="width: 1050px; height: 500px">
+        <h1>Orders</h1>
+        <canvas id="transactions"></canvas>
       </div>
 
       <div class="table">
@@ -209,51 +212,8 @@
           </tbody>
         </table>
       </div>
-
-      <!--Performance Metrics section-->
-      <!--Performance Metrics will be things like 
-        Fullfilment rate, Customer yield, Average Weight processed
-      They should be displayed as mini-dashboards and charts-->
-      <div class="performance-metrics">
-        <div class="tiles">
-          <div class="card fulfillment">
-            <img
-              class="card-img-top"
-              src="./images/icons8-truck-100.png"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Fulfillment Rate</h5>
-              <p class="card-text"></p>
-            </div>
-          </div>
-
-          <div class="card customer-yield">
-            <img
-              class="card-img-top"
-              src="./images/icons8-customer-64.png"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Customer Yield</h5>
-              <p class="card-text">80%</p>
-            </div>
-          </div>
-
-          <div class="card average-weight">
-            <img
-              class="card-img-top"
-              src="./images/icons8-weight-80.png"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Average Weight Processed</h5>
-              <p class="card-text">5 T</p>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
+
     <!--Backdrop for the toggled Tabs-->
     <section class="backdrop"></section>
 
@@ -284,67 +244,104 @@
     <!--This is where the innovators see what orders have been placed and accept/deny them-->
 
     <div class="ordersMarket">
-      <h3>Orders Market</h3>
+      <h3>Place an order for plastic</h3>
       <span class="close" onclick="toggle('ordersMarket')">X</span>
-      <table class="table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">Order ID</th>
-            <th scope="col">Date</th>
-            <th scope="col">Weight Requested</th>
-            <th scope="col">Innovator Address</th>
-            <th scope="col">Estimated Tokens</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>May 1</td>
-            <td>2 T</td>
-            <td>0x1234567890</td>
-            <td>0.32145</td>
-            <td>
-              <button class="btn btn-success">Accept</button>
-              <button class="btn btn-danger">Deny</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="paymentsModal">
-      <h3>Payments</h3>
-      <span class="close" onclick="toggle('paymentsModal')">X</span>
-      <p>Enter the address or scan a qr code</p>
-      <!-- <div id="reader" width="600px"></div> -->
-
-      <form action="" id="paymentForm">
-        <div style="display: flex; flex-direction: column; align-items: center">
-          <label for="address">Enter the address</label>
-          <input
-            type="text"
-            name="address"
-            placeholder="Enter the address"
-            id="address"
-            style="max-width: 300px"
-          />
-          <label for="amount">Enter the amount of Polycoins to send</label>
-          <input
-            type="number"
-            name="amount"
-            id="amount"
-            placeholder="Amount"
-            style="max-width: 300px"
-          />
-          <button type="submit" style="max-width: 300px" id="submitButton">
-            Submit
-          </button>
-          <p id="makePaymentResponse" style="display: none"></p>
-        </div>
+      <form id="placeOrderForm">
+        <input
+          type="number"
+          placeholder="Enter the amount in (KG)"
+          name="amountInKG"
+          id="amountInKG"
+        />
+        <input type="submit" id="placeOrderButton" />
       </form>
+      <p style="display: none" id="placeOrderResponse">Response:</p>
     </div>
+    <script>
+      window.onload = function () {
+        //Write the values dynamically
+        dynamicWrite("fulfillment", 25, "%");
+        dynamicWrite("orders", 200, " ");
+        dynamicWrite("materials", 24, "T");
+        dynamicWrite("tokens", 5.348, "PC");
+        dynamicWrite("customer-yield", 80, "%");
+        dynamicWrite("average-weight", 5, "T");
+      };
 
-    <script src="js/makePayment.js"></script>
+      function toggle(className) {
+        var table = document.getElementsByClassName(className)[0];
+        if (table.style.display === "none" || table.style.display === "") {
+          table.style.display = "block";
+        } else {
+          table.style.display = "none";
+        }
+        toggleBackdrop();
+      }
+
+      function dynamicWrite(className, targetValue, unit) {
+        var element = document.getElementsByClassName(className)[0];
+        var textHome = element.querySelector(".card-text");
+        var currentValue = 0;
+
+        var intervalId = setInterval(function () {
+          if (currentValue <= targetValue) {
+            textHome.innerHTML = currentValue + unit;
+            currentValue++;
+          } else {
+            clearInterval(intervalId);
+          }
+        }, 50);
+      }
+      function toggleBackdrop() {
+        var backdrop = document.getElementsByClassName("backdrop")[0];
+        if (
+          backdrop.style.display === "none" ||
+          backdrop.style.display === ""
+        ) {
+          backdrop.style.display = "block";
+        } else {
+          backdrop.style.display = "none";
+        }
+      }
+      function initGraph() {
+        let graph = document.getElementsByClassName("graph")[0];
+        graph.style.display = "block";
+        graph.style.width = "100%";
+        graph.style.height = "500px";
+
+        let ctx = document.getElementById("transactions").getContext("2d");
+
+        // Sample data
+        let labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"];
+        let data = [0.0, 0.27, 0.33, 0.45, 0.19, 0.92, 0.94];
+
+        let tokenChart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "Transation Value",
+                data: data,
+                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                borderColor: "rgba(255, 99, 132, 1)",
+                tension: 0.1,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+      }
+      initGraph();
+    </script>
+    <script src="./js/placeOrder.js"></script>
   </body>
 </html>

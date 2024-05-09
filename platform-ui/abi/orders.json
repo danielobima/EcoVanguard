@@ -1,0 +1,150 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_orderID",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_acceptor",
+        "type": "address"
+      }
+    ],
+    "name": "AcceptOrder",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "requested_kg",
+        "type": "uint256"
+      }
+    ],
+    "name": "CreateOrder",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_orderID",
+        "type": "uint256"
+      }
+    ],
+    "name": "MarkDelivery",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "orderID",
+        "type": "uint256"
+      }
+    ],
+    "name": "OrderAccepted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "orderID",
+        "type": "uint256"
+      }
+    ],
+    "name": "OrderCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "orderID",
+        "type": "uint256"
+      }
+    ],
+    "name": "OrderDelivered",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "orderCounter",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "orders",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "innovator",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "recycler",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "requested_kg",
+        "type": "uint256"
+      },
+      {
+        "internalType": "enum OrderState",
+        "name": "state",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
