@@ -12,3 +12,8 @@ The project includes a merchant dashboard and a recyclers dashboard. The merchan
 
 The project is built using vanilla HTML/CSS so it can be served using any web server such as apache, or the files opened directly.
 
+### Important Links
+[Merchant Side Page]([https://eco-vanguard.vercel.app/recyclers.html]) 
+[Recycler Side Page](https://eco-vanguard.vercel.app/recyclers.html)
+[Landing Page](https://eco-vanguard.vercel.app/index.html)
+
