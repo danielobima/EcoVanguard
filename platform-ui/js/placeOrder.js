@@ -10,6 +10,37 @@ const placeOrder = async (e) => {
   try {
     console.log("placeOrder", amount);
 
+    try {
+      await ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: "0x14A34" }],
+      });
+    } catch (error) {
+      console.log("faile.d to switch chain", error);
+      if (error.code === 4902) {
+        try {
+          await ethereum // Or window.ethereum if you don't support EIP-6963.
+            .request({
+              method: "wallet_addEthereumChain",
+              params: [
+                {
+                  chainId: "0x14A34",
+                  chainName: "Base Sepolia",
+                  rpcUrls: ["	https://sepolia.base.org"] /* ... */,
+                  nativeCurrency: {
+                    name: "ETH",
+                    symbol: "ETH",
+                    decimals: 18,
+                  },
+                },
+              ],
+            });
+        } catch (addError) {
+          // Handle "add" error.
+          console.log("Failed to add chain", addError);
+        }
+      }
+    }
     const account = (
       await window.ethereum.request({ method: "eth_requestAccounts" })
     )[0];
@@ -41,4 +72,13 @@ const placeOrder = async (e) => {
 window.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("placeOrderForm");
   form.onsubmit = placeOrder;
+
+  const tokenEstimate = document.getElementById("tokenEstimate");
+  const handleChange = (e) => {
+    const amount = e.target.value ? parseInt(e.target.value) : 0;
+    const tokenAmount = amount * 0.579283;
+    tokenEstimate.innerHTML = `~ ${tokenAmount.toFixed(6)} PTK`;
+  };
+  document.getElementById("amountInKG").onkeydown = handleChange;
+  document.getElementById("amountInKG").onchange = handleChange;
 });

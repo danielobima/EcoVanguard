@@ -20,37 +20,7 @@ const initialize = () => {
     connectButton.disabled = true;
     try {
       if (window.ethereum) {
-        try {
-          await ethereum.request({
-            method: "wallet_switchEthereumChain",
-            params: [{ chainId: "0x14A34" }],
-          });
-        } catch (error) {
-          console.log("faile.d to switch chain", error);
-          if (error.code === 4902) {
-            try {
-              await ethereum // Or window.ethereum if you don't support EIP-6963.
-                .request({
-                  method: "wallet_addEthereumChain",
-                  params: [
-                    {
-                      chainId: "0x14A34",
-                      chainName: "Base Sepolia",
-                      rpcUrls: ["	https://sepolia.base.org"] /* ... */,
-                      nativeCurrency: {
-                        name: "ETH",
-                        symbol: "ETH",
-                        decimals: 18,
-                      },
-                    },
-                  ],
-                });
-            } catch (addError) {
-              // Handle "add" error.
-              console.log("Failed to add chain", addError);
-            }
-          }
-        }
+       
         const web3 = new Web3(window.ethereum);
         // Request the user to connect accounts (Metamask will prompt)
         await window.ethereum.request({ method: "eth_requestAccounts" });
