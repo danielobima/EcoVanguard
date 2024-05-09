@@ -1,9 +1,9 @@
 *{
-    font-family: 'roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 .navbar-brand span{
     font-size: 1.5rem;
-    font-family: 'roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
 }
