@@ -45,3 +45,8 @@ window.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("paymentForm");
   form.onsubmit = makePayment;
 });
+
+const acceptOrder = (id) => {
+  console.log("acceptOrder", id);
+  document.getElementById(id).remove();
+};

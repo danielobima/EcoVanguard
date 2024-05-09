@@ -290,7 +290,6 @@
         <thead>
           <tr>
             <th scope="col">Order ID</th>
-            <th scope="col">Date</th>
             <th scope="col">Weight Requested</th>
             <th scope="col">Innovator Address</th>
             <th scope="col">Estimated Tokens</th>
@@ -298,14 +297,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr id="defaultRecord">
             <td>1</td>
-            <td>May 1</td>
             <td>2 T</td>
             <td>0x1234567890</td>
             <td>0.32145</td>
             <td>
-              <button class="btn btn-success">Accept</button>
+              <button
+                class="btn btn-success"
+                id="1"
+                onclick="acceptOrder('defaultRecord')"
+              >
+                Accept
+              </button>
               <button class="btn btn-danger">Deny</button>
             </td>
           </tr>
